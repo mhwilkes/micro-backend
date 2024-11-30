@@ -1,0 +1,14 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Dashboard Bun" type="BunRunConfiguration">
+    <option name="program" value="src/app/page.tsx" />
+    <option name="runtimeParameters">
+      <list>
+        <option value="--bun" />
+        <option value="run" />
+        <option value="dev" />
+      </list>
+    </option>
+    <option name="workingDirectory" value="$PROJECT_DIR$/dashboard" />
+    <method v="2" />
+  </configuration>
+</component>

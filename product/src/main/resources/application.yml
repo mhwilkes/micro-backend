@@ -1,8 +1,25 @@
 greeting:
   message: "hello"
 quarkus:
+  http:
+    cors:
+      ~: true
+      origins: "*"
+      methods:
+        - GET
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+      headers:
+        - accept
+        - content-type
+        - authorization
+        - Access-Control-Allow-Origin
+
   devservices:
     enabled: true
   datasource:
     db-kind: pgsql
-
+    devservices:
+      port: 5432

@@ -108,12 +108,18 @@
                         <artifactId>kotlin-maven-allopen</artifactId>
                         <version>${kotlin.version}</version>
                     </dependency>
+                    <dependency>
+                        <groupId>org.jetbrains.kotlin</groupId>
+                        <artifactId>kotlin-maven-serialization</artifactId>
+                        <version>${kotlin.version}</version>
+                    </dependency>
                 </dependencies>
                 <configuration>
                     <javaParameters>true</javaParameters>
                     <jvmTarget>21</jvmTarget>
                     <compilerPlugins>
                         <plugin>all-open</plugin>
+                        <plugin>kotlinx-serialization</plugin>
                     </compilerPlugins>
                     <pluginOptions>
                         <option>all-open:annotation=jakarta.ws.rs.Path</option>

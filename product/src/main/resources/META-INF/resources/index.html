@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        img {
+            max-width: 100px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+<h1>Product Management</h1>
+
+<h2 id="formTitle">Add Product</h2>
+<form id="productForm">
+    <input type="hidden" id="productId" name="id">
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name" required><br>
+    <label for="description">Description:</label><br>
+    <input type="text" id="description" name="description"><br>
+    <label for="price">Price:</label><br>
+    <input type="number" id="price" name="price" step="0.01" required><br><br>
+    <button type="submit" id="submitButton">Add Product</button>
+    <button type="button" id="cancelButton" style="display:none;" onclick="resetForm()">Cancel</button>
+</form>
+
+<h2>Products</h2>
+<table id="productsTable">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Images</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Product rows with images will be added here dynamically -->
+    </tbody>
+</table>
+
+<script>
+    const API_BASE = '/product'; // Adjust if your REST API is served at a different path
+    let editingProductId = null;
+
+    // Fetch and display products with their images
+    const fetchProducts = async () => {
+        const response = await fetch(API_BASE);
+        const products = await response.json();
+        const tableBody = document.getElementById('productsTable').querySelector('tbody');
+        tableBody.innerHTML = '';
+        products.forEach(product => {
+            const row = document.createElement('tr');
+            const imagesHtml = product.images.map(image => `
+                    <div>
+                        <img src="${image.url}" alt="${image.altText}">
+                        <p>${image.type} (${image.title})</p>
+                    </div>
+                `).join('');
+            row.innerHTML = `
+                    <td>${product.id}</td>
+                    <td>${product.name}</td>
+                    <td>${product.description}</td>
+                    <td>${product.price}</td>
+                    <td>${imagesHtml}</td>
+                    <td>
+                        <button onclick="editProduct(${product.id})">Edit</button>
+                        <button onclick="deleteProduct(${product.id})">Delete</button>
+                    </td>
+                `;
+            tableBody.appendChild(row);
+        });
+    };
+
+    // Add or update a product
+    const submitProductForm = async (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const product = Object.fromEntries(formData.entries());
+        product.price = parseFloat(product.price);
+
+        if (editingProductId) {
+            // Update existing product
+            await fetch(`${API_BASE}/${editingProductId}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(product)
+            });
+        } else {
+            // Add new product
+            await fetch(API_BASE, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(product)
+            });
+        }
+
+        resetForm();
+        fetchProducts();
+    };
+
+    // Populate form for editing
+    const editProduct = async (id) => {
+        const response = await fetch(`${API_BASE}/${id}`);
+        const product = await response.json();
+
+        document.getElementById('formTitle').innerText = 'Edit Product';
+        document.getElementById('submitButton').innerText = 'Update Product';
+        document.getElementById('cancelButton').style.display = 'inline';
+        document.getElementById('productId').value = product.id;
+        document.getElementById('name').value = product.name;
+        document.getElementById('description').value = product.description;
+        document.getElementById('price').value = product.price;
+
+        editingProductId = id;
+    };
+
+    // Delete a product
+    const deleteProduct = async (id) => {
+        await fetch(`${API_BASE}/${id}`, { method: 'DELETE' });
+        fetchProducts();
+    };
+
+    // Reset form
+    const resetForm = () => {
+        document.getElementById('formTitle').innerText = 'Add Product';
+        document.getElementById('submitButton').innerText = 'Add Product';
+        document.getElementById('cancelButton').style.display = 'none';
+        document.getElementById('productForm').reset();
+        editingProductId = null;
+    };
+
+    // Attach event listeners
+    document.getElementById('productForm').addEventListener('submit', submitProductForm);
+
+    // Initial load
+    fetchProducts();
+</script>
+</body>
+</html>

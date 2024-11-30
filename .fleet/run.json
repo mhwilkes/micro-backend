@@ -1,0 +1,11 @@
+{
+    "configurations": [
+
+        {
+            "name": "product [clean, quarkus:dev]",
+            "type": "maven",
+            "workingDir": "C:\\Users\\Mike\\IdeaProjects\\micro-backend\\product",
+            "tasks": ["clean", "quarkus:dev"]
+        }
+    ]
+}
