@@ -1,48 +1,46 @@
+-- Products Table with Apple Products
 INSERT INTO quarkus.public.products (id, price, created_at, updated_at, description, name)
-VALUES (1, 19.99, '2024-11-27 10:00:00', '2024-11-27 10:00:00', 'A durable and eco-friendly water bottle.',
-        'Eco Water Bottle'),
-       (2, 299.99, '2024-11-27 10:00:00', '2024-11-27 10:00:00',
-        'A state-of-the-art smartwatch with multiple features.', 'Smartwatch Pro'),
-       (3, 49.99, '2024-11-27 10:00:00', '2024-11-27 10:00:00', 'A pair of noise-canceling wireless earbuds.',
-        'Noise-Canceling Earbuds'),
-       (4, 999.99, '2024-11-27 10:00:00', '2024-11-27 10:00:00',
-        'A high-end gaming laptop for professionals and enthusiasts.', 'Gaming Laptop X1'),
-       (5, 14.99, '2024-11-27 10:00:00', '2024-11-27 10:00:00', 'A stylish ceramic mug perfect for coffee lovers.',
-        'Ceramic Coffee Mug');
+VALUES (1, 999.99, '2024-11-27 10:00:00', '2024-11-27 10:00:00',
+        'A powerful new smartphone with advanced camera features.', 'iPhone 14 Pro'),
+       (2, 1199.99, '2024-11-27 10:00:00', '2024-11-27 10:00:00', 'A sleek and powerful laptop with the new M1 chip.',
+        'MacBook Pro 14-inch'),
+       (3, 549.99, '2024-11-27 10:00:00', '2024-11-27 10:00:00',
+        'Next-generation over-ear headphones with spatial audio.', 'AirPods Max'),
+       (4, 499.99, '2024-11-27 10:00:00', '2024-11-27 10:00:00', 'A compact, stylish tablet with seamless interface.',
+        'iPad Mini 6th Gen'),
+       (5, 399.00, '2024-11-27 10:00:00', '2024-11-27 10:00:00',
+        'Smart-watch engineered with precision for fitness tracking.', 'Apple Watch Series 8');
 
-INSERT INTO quarkus.public.product_images (id, height, width, created_at, updated_at, product_id, size_in_bytes, alt_text, format,
-                           title, type, url)
+-- Product Images Table with placehold.co URLs
+INSERT INTO quarkus.public.product_images (id, height, width, created_at, updated_at, product_id, size_in_bytes,
+                                           alt_text, format, title, type, url)
 VALUES
-    -- Images for Product 1: Eco Water Bottle
-    (1, 200, 200, '2024-11-27 10:00:00', '2024-11-27 10:00:00', 1, 20480, 'Thumbnail of Eco Water Bottle', 'JPEG',
-     'Eco Water Bottle Thumbnail', 'THUMBNAIL', 'https://plus.unsplash.com/premium_photo-1664527307281-faf42c09ac8f?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
-    (2, 900, 600, '2024-11-27 10:00:00', '2024-11-27 10:00:00', 1, 512000, 'Main image of Eco Water Bottle', 'PNG',
-     'Eco Water Bottle Main', 'MAIN', 'https://plus.unsplash.com/premium_photo-1664527305901-db3d4e724d15?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
+    -- Images for Product 1: iPhone 14 Pro
+    (1, 225, 180, '2024-11-27 10:00:00', '2024-11-27 10:00:00', 1, 20480, 'iPhone 14 Pro Thumbnail', 'JPEG',
+     'iPhone 14 Pro Thumbnail', 'THUMBNAIL', 'https://placehold.co/225x180'),
+    (2, 1000, 1000, '2024-11-27 10:00:00', '2024-11-27 10:00:00', 1, 1048000, 'Main image of iPhone 14 Pro', 'JPEG',
+     'iPhone 14 Pro Main', 'MAIN', 'https://placehold.co/1000x1000'),
 
-    -- Images for Product 2: Smartwatch Pro
-    (3, 200, 200, '2024-11-27 10:00:00', '2024-11-27 10:00:00', 2, 20480, 'Thumbnail of Smartwatch Pro', 'WEBP',
-     'Smartwatch Pro Thumbnail', 'THUMBNAIL', 'https://example.com/images/smartwatch-pro-thumbnail.webp'),
-    (4, 800, 800, '2024-11-27 10:00:00', '2024-11-27 10:00:00', 2, 512000, 'Main image of Smartwatch Pro', 'JPEG',
-     'Smartwatch Pro Main', 'MAIN', 'https://example.com/images/smartwatch-pro-main.jpg'),
+    -- Images for Product 2: MacBook Pro 14-inch
+    (3, 200, 250, '2024-11-27 10:00:00', '2024-11-27 10:00:00', 2, 30720, 'Thumbnail of MacBook Pro 14-inch', 'JPEG',
+     'MacBook Pro 14-inch Thumbnail', 'THUMBNAIL', 'https://placehold.co/200x250'),
+    (4, 1200, 800, '2024-11-27 10:00:00', '2024-11-27 10:00:00', 2, 2048000, 'Main image of MacBook Pro 14-inch', 'PNG',
+     'MacBook Pro 14-inch Main', 'MAIN', 'https://placehold.co/1200x800'),
 
-    -- Images for Product 3: Noise-Canceling Earbuds
-    (5, 200, 200, '2024-11-27 10:00:00', '2024-11-27 10:00:00', 3, 20480, 'Thumbnail of Noise-Canceling Earbuds', 'PNG',
-     'Noise-Canceling Earbuds Thumbnail', 'THUMBNAIL',
-     'https://example.com/images/noise-canceling-earbuds-thumbnail.png'),
-    (6, 600, 600, '2024-11-27 10:00:00', '2024-11-27 10:00:00', 3, 300000, 'Gallery image of Noise-Canceling Earbuds',
-     'JPEG', 'Noise-Canceling Earbuds Gallery', 'GALLERY',
-     'https://example.com/images/noise-canceling-earbuds-gallery.jpg'),
+    -- Images for Product 3: AirPods Max
+    (5, 250, 250, '2024-11-27 10:00:00', '2024-11-27 10:00:00', 3, 51200, 'Thumbnail of AirPods Max', 'JPEG',
+     'AirPods Max Thumbnail', 'THUMBNAIL', 'https://placehold.co/250x250'),
+    (6, 800, 800, '2024-11-27 10:00:00', '2024-11-27 10:00:00', 3, 1056000, 'Main image of AirPods Max', 'JPEG',
+     'AirPods Max Main', 'MAIN', 'https://placehold.co/800x800'),
 
-    -- Images for Product 4: Gaming Laptop X1
-    (7, 200, 200, '2024-11-27 10:00:00', '2024-11-27 10:00:00', 4, 20480, 'Thumbnail of Gaming Laptop X1', 'JPEG',
-     'Gaming Laptop X1 Thumbnail', 'THUMBNAIL', 'https://example.com/images/gaming-laptop-x1-thumbnail.jpg'),
-    (8, 1920, 1080, '2024-11-27 10:00:00', '2024-11-27 10:00:00', 4, 2048000, 'Main image of Gaming Laptop X1', 'PNG',
-     'Gaming Laptop X1 Main', 'MAIN', 'https://example.com/images/gaming-laptop-x1-main.png'),
-    (9, 1200, 800, '2024-11-27 10:00:00', '2024-11-27 10:00:00', 4, 1536000, 'Banner image of Gaming Laptop X1', 'JPEG',
-     'Gaming Laptop X1 Banner', 'BANNER', 'https://example.com/images/gaming-laptop-x1-banner.jpg'),
+    -- Images for Product 4: iPad Mini 6th Gen
+    (7, 180, 180, '2024-11-27 10:00:00', '2024-11-27 10:00:00', 4, 20480, 'Thumbnail of iPad Mini 6th Gen', 'JPEG',
+     'iPad Mini 6th Gen Thumbnail', 'THUMBNAIL', 'https://placehold.co/180x180'),
+    (8, 1000, 1000, '2024-11-27 10:00:00', '2024-11-27 10:00:00', 4, 506000, 'Main image of iPad Mini 6th Gen', 'JPEG',
+     'iPad Mini 6th Gen Main', 'MAIN', 'https://placehold.co/1000x1000'),
 
-    -- Images for Product 5: Ceramic Coffee Mug
-    (10, 200, 200, '2024-11-27 10:00:00', '2024-11-27 10:00:00', 5, 20480, 'Thumbnail of Ceramic Coffee Mug', 'GIF',
-     'Ceramic Coffee Mug Thumbnail', 'THUMBNAIL', 'https://example.com/images/ceramic-coffee-mug-thumbnail.gif'),
-    (11, 800, 800, '2024-11-27 10:00:00', '2024-11-27 10:00:00', 5, 512000, 'Main image of Ceramic Coffee Mug', 'WEBP',
-     'Ceramic Coffee Mug Main', 'MAIN', 'https://example.com/images/ceramic-coffee-mug-main.webp');
+    -- Images for Product 5: Apple Watch Series 8
+    (9, 220, 220, '2024-11-27 10:00:00', '2024-11-27 10:00:00', 5, 25600, 'Thumbnail of Apple Watch Series 8', 'PNG',
+     'Apple Watch Series 8 Thumbnail', 'THUMBNAIL', 'https://placehold.co/220x220'),
+    (10, 900, 900, '2024-11-27 10:00:00', '2024-11-27 10:00:00', 5, 1546000, 'Main image of Apple Watch Series 8',
+     'JPEG', 'Apple Watch Series 8 Main', 'MAIN', 'https://placehold.co/900x900');

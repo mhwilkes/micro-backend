@@ -2,14 +2,53 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Custom styles for Apple-like theming */
+body {
+    @apply bg-apple-gray text-text-normal antialiased;
 }
 
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    @apply font-sans font-medium text-text-normal;
+}
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+h1 {
+    @apply text-4xl;
+}
+
+h2 {
+    @apply text-3xl;
+}
+
+h3 {
+    @apply text-2xl;
+}
+
+/* Links */
+a {
+    @apply text-apple-blue hover:text-blue-600 transition-colors;
+}
+
+/* Buttons */
+button {
+    @apply bg-apple-blue text-white font-medium rounded-md px-4 py-2 shadow-apple hover:bg-blue-600 transition-all;
+}
+
+/* Form inputs */
+input, textarea {
+    @apply border border-gray-300 rounded-lg focus:border-apple-blue focus:ring focus:ring-blue-100 focus:outline-none;
+}
+
+/* Cards */
+.card {
+    @apply bg-white shadow-apple rounded-lg overflow-hidden p-4 mb-4;
+}
+
+/* Fine-tuning utility classes for layouts */
+.container {
+    @apply max-w-screen-lg mx-auto p-4;
+}
+
+.nav-item {
+    @apply text-text-light hover:text-text-normal transition-all;
 }
