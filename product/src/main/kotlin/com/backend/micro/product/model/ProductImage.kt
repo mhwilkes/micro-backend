@@ -8,7 +8,7 @@ import java.time.LocalDateTime
 @Table(name = "product_images")
 data class ProductImage(
 
-    @field:Column(nullable = false, unique = true) var url: String,
+    @field:Column(nullable = false) var url: String,
 
     @field:Column(
         name = "alt_text", nullable = false
