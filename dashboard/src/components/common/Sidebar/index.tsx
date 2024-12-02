@@ -19,7 +19,7 @@ const Sidebar: React.FC<{ sidebarOpen: boolean; setSidebarOpen: (open: boolean) 
     return (
         <ClickOutside onClick={() => setSidebarOpen(true)}>
             <aside
-                className={`fixed left-0 top-0 z-50 h-screen w-64 flex-col overflow-hidden bg-gray-dark shadow-md transition-transform ease-in-out rounded-xl ${
+                className={`fixed left-0 top-0 z-999 h-screen w-64 flex-col overflow-hidden bg-gray-dark shadow-md transition-transform ease-in-out rounded-xl ${
                     sidebarOpen ? "translate-x-0" : "-translate-x-full"
                 }`}
             >

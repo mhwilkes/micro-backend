@@ -18,11 +18,18 @@ const ProductTable = ({products}: { products: Product[] }) => {
     const renderProductImages = (images: ProductImage[]) => (
             <>
                 <div className="grid grid-cols-2 gap-4">
-                    {images.map((image: ProductImage, index) => (<>
-                            <Image key={index} src={image.url} width={50} height={50} alt={image.altText}
-                                   className="w-full h-48 object-cover rounded"/>
-                        </>
-
+                    {images.map((image, index) => (
+                        <div key={index} className="flex flex-col items-center">
+                            <Image
+                                src={image.url}
+                                width={200} // Adjust widths/heights as necessary
+                                height={150}
+                                alt={image.altText}
+                                className="w-full h-48 object-cover rounded"
+                            />
+                            {image.title && <h4 className="mt-2 font-semibold text-center">{image.title}</h4>}
+                            {image.altText && <p className="text-sm text-center">{image.altText}</p>}
+                        </div>
                     ))}
                 </div>
             </>
