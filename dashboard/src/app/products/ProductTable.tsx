@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {ProductImage} from "@/types/ProductImage";
 import {Product} from "@/types/Product";
 import Modal from "@/components/ModalComponent";
 import Image from "next/image";
@@ -9,11 +8,6 @@ import GenericTable from "@/components/Table/GenericTable";
 const ProductTable = ({products}: { products: Product[] }) => {
     const [isModalOpen, setModalOpen] = useState(false);
     const [modalContent, setModalContent] = useState<React.ReactNode>(null);
-
-    const openModal = (images: ProductImage[]) => {
-        setModalContent(renderProductImages(images));
-        setModalOpen(true);
-    };
 
     const renderProductImages = (images: ProductImage[]) => (
             <>

@@ -2,7 +2,7 @@ import axios from 'axios';
 import {Product} from "@/types/Product";
 
 const apiClient = axios.create({
-    baseURL: 'http://localhost:8080/product', // Replace with your actual product service URL
+    baseURL: 'http://localhost:8080/products', // Replace with your actual product service URL
     timeout: 10000,
     headers: {
         'Content-Type': 'application/json',

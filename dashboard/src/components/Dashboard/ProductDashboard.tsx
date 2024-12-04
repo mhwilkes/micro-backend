@@ -3,9 +3,6 @@ import React, {useEffect, useState} from 'react';
 import {fetchProducts} from '@/service/productApiService';
 import {Product} from "@/types/Product";
 import ProductTable from "@/app/products/ProductTable";
-import Modal from "@/components/ModalComponent";
-import {ProductImage} from "@/types/ProductImage";
-import Image from "next/image";
 
 const ProductDashboard: React.FC = () => {
     const [products, setProducts] = useState<Product[]>([]);

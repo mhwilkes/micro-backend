@@ -1,33 +1,54 @@
-import io.quarkus.hibernate.orm.panache.kotlin.PanacheEntity
+package com.backend.micro.product.model
+
+import io.quarkus.hibernate.orm.panache.kotlin.PanacheEntityBase
+import jakarta.json.bind.annotation.JsonbTransient
 import jakarta.persistence.*
-import java.math.BigDecimal
-import java.time.LocalDateTime
 
 @Entity
-@Table(name = "products")
-data class Product(
-    @field:Column(nullable = false, unique = true) var name: String,                      // Name of the product
+@Table(name = "product")
+class Product : PanacheEntityBase {
 
-    @field:Column(
-        nullable = true, length = 1000
-    ) var description: String?,              // Optional description of the product
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Long? = null
 
-    @field:Column(nullable = false) var price: BigDecimal,                 // Price of the product
+    @Column(name = "name", nullable = false)
+    lateinit var name: String
 
-    @field:OneToMany(
-        cascade = [CascadeType.ALL], orphanRemoval = true, fetch = FetchType.EAGER
-    ) @field:JoinColumn(name = "product_id") var images: MutableList<ProductImage> = mutableListOf(), // List of associated images
+    @Column(name = "description")
+    var description: String? = null
 
-    @field:Column(
-        name = "created_at", nullable = false
-    ) var createdAt: LocalDateTime = LocalDateTime.now(), // Creation timestamp
+    @Column(name = "price", nullable = false)
+    var price: Double = 0.0
 
-    @field:Column(
-        name = "updated_at", nullable = false
-    ) var updatedAt: LocalDateTime = LocalDateTime.now()  // Last update timestamp
+    @ElementCollection
+    @Column(name = "image_urls")
+    var imageUrls: List<String> = mutableListOf()
 
-) : PanacheEntity() {
-    constructor() : this("", "", BigDecimal.ZERO) {
+    @Column(name = "stock_level", nullable = false)
+    var stockLevel: Int = 0
 
-    }
+    @Column(name = "availability", nullable = false)
+    var availability: Boolean = true
+
+    @JsonbTransient
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    var category: Category? = null
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "product_attributes",
+        joinColumns = [JoinColumn(name = "product_id")],
+        inverseJoinColumns = [JoinColumn(name = "attribute_id")]
+    )
+    var attributes: MutableSet<Attribute> = mutableSetOf()
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "product_promotions",
+        joinColumns = [JoinColumn(name = "product_id")],
+        inverseJoinColumns = [JoinColumn(name = "promotion_id")]
+    )
+    var promotions: MutableSet<Promotion> = mutableSetOf()
 }

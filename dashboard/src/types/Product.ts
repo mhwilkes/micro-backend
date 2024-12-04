@@ -1,12 +1,16 @@
-// TypeScript interface for Product
-import {ProductImage} from "@/types/ProductImage";
+import {Category} from './Category';
+import {Attribute} from './Attribute';
+import {Promotion} from './Promotion';
 
 export interface Product {
-    id: number
+    id: number;
     name: string;
     description?: string;
-    price: number; // Using number to represent price; consider Decimal.js for precision
-    images: ProductImage[];
-    createdAt: Date;
-    updatedAt: Date;
+    price: number;
+    imageUrls?: string[];
+    stockLevel: number;
+    availability: boolean;
+    category?: Category;
+    attributes?: Set<Attribute>; // Relationship with attributes
+    promotions?: Set<Promotion>; // Relationship with promotions
 }
